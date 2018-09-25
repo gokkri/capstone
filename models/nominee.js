@@ -4,18 +4,18 @@ var passportLocalMongoose = require ("passport-local-mongoose");
 
 var NomineeSchema = new mongoose.Schema({
 
-    fullName: String,
-    phone: Number,
-    email: String,
-    aadhaar: Number,
-    relation: String,
-    user: {
-    id:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
-    },
-    username: String
-}
+    fullNameN: String,
+    phoneN: Number,
+    emailN: String,
+    aadhaarN: Number,
+    relationN: String,
+//     user: {
+//     id:{
+//         type: mongoose.Schema.Types.ObjectId,
+//         ref: "User"
+//     },
+//     username: String
+// }
 });
 
 

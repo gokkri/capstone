@@ -7,18 +7,18 @@ var UserSchema = new mongoose.Schema({
     password: String,
     fullName: String,
     email: String,
-    avatar: String,
+    //avatar: String,
     aadhaar: Number,
-    phone: Number,
+    phone   : Number,
     isAdmin: {type: Boolean, default: false},
     isDead: {type: Boolean, default: false},
-    userData: String,
-    nominee: [
-        {
-            type:mongoose.Schema.Types.ObjectId,
-        ref: "Nominee"
-    }
-    ]
+   // userData: String,
+    // nominee: [
+    //     {
+    //         type:mongoose.Schema.Types.ObjectId,
+    //     ref: "Nominee"
+    // }
+    // ]
     })
 
 

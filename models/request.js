@@ -5,12 +5,13 @@ var passportLocalMongoose = require ("passport-local-mongoose");
 var ReqSchema = new mongoose.Schema({
     
 //deceased
-    fullNameD: String,
-    phoneD: Number,
-    emailD: String,
-    aadhaarD: Number,
+    fullName: String,
+    phone: Number,
+    email: String,
+    aadhaar: Number,
     relation: String,
-    deathCertificateD: String,
+    deathCertificate: String,     //(image)
+    deathCertificateId: String    //(imageid)
 
 // //requester
 //     fullNameN: Number,

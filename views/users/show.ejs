@@ -1,0 +1,17 @@
+<% include ../partials/header %>
+
+<div class="row">
+	<div class="col-md-4">
+			<h1><%= user.fullName %></h1>
+		
+	<div class="col-md-8">
+		<h3><%= user.username %>'s secrets:</h3>
+		<ul>
+		<% secrets.forEach(function(secret) { %>
+			<li><a href="/secrets/<%= secret.id %>"><%= secret.secret %></a></li>
+		<% }); %>
+		</ul>
+	</div>
+</div>
+
+<% include ../partials/footer %>

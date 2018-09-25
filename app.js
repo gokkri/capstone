@@ -12,7 +12,6 @@ methodOverride = require("method-override");
 
 
 
-
 //models
 const User = require("./models/user");
 const Nominee = require("./models/nominee");
@@ -22,6 +21,9 @@ const Request = require("./models/request");
 
 
 //routes
+var secretRoutes = require('./routes/secrets')
+var indexRoutes = require('./routes/index')
+
 
 
 //mongoose connection
@@ -32,7 +34,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(express.static(__dirname + "/public"));
-
+app.set('view engine', 'ejs');
 
 
 //passport config 
@@ -60,12 +62,12 @@ app.use((req, res, next)=>{
 
 
 //use routes
-// app.use()
-
+app.use('/', indexRoutes)
+app.use('/secrets', secretRoutes)
 
 
 
 //listen on port
-app.listen(1111, ()=>{
+app.listen(2222, ()=>{
     console.log("listening on port 1111")
 })
