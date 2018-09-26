@@ -8,7 +8,8 @@ flash = require ("connect-flash"),
 passport = require("passport"),
 localStrategy = require("passport-local"),
 methodOverride = require("method-override");
-import env from 'dotenv/config';
+const dotenv = require('dotenv');
+
 
 
 
