@@ -8,6 +8,8 @@ flash = require ("connect-flash"),
 passport = require("passport"),
 localStrategy = require("passport-local"),
 methodOverride = require("method-override");
+import env from 'dotenv/config';
+
 
 
 
@@ -27,7 +29,7 @@ var indexRoutes = require('./routes/index')
 
 
 //mongoose connection
-mongoose.connect("mongodb://localhost/capstone");
+mongoose.connect("process.env.MONGOURL");
 
 
 app.use(bodyParser.urlencoded({extended:true}));
@@ -68,6 +70,6 @@ app.use('/secrets', secretRoutes)
 
 
 //listen on port
-app.listen(2222, ()=>{
-    console.log("listening on port 1111")
+app.listen(process.env.PORT || 2222, ()=>{
+    console.log("listening on port 2222")
 })
