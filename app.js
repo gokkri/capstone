@@ -17,7 +17,6 @@ var requestRoutes = require('./routes/requests'),
     secretRoutes = require('./routes/secrets'),
     indexRoutes = require('./routes/index')
 
-// const url = `mongodb://${process.env.DATABASE_USER}:${process.env.DATABASE_PASS}@ds117423.mlab.com:17423/deathwish
 const url = "mongodb://"+process.env.DATABASE_USER+":"+process.env.DATABASE_PASS+"@ds117423.mlab.com:17423/deathwish"
 
 mongoose.connect(url).catch((err) => {console.log(err)})
@@ -57,6 +56,6 @@ app.use('/secrets',secretRoutes)
 app.use('/requests',requestRoutes)
 
 
-app.listen(8886,()=>{
+app.listen(process.env.PORT || 8886,()=>{
     console.log(8886)
 })
