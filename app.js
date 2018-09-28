@@ -1,21 +1,18 @@
 require('dotenv').config();
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose"),
-    flash       = require('connect-flash')
-    Secret      = require("./models/secret"),
-    seedDB      = require("./seeds"),
-    Request     = require('./models/request')
-    passport    = require('passport')
-    LocalStrategy = require('passport-local')
-    User        = require('./models/user'),
-    methodOverride = require('method-override')
+const express     = require("express");
+const app         = express();
+const  mongoose    = require("mongoose");
+const bodyParser  = require("body-parser");
+const  flash       = require('connect-flash');
+const passport    = require('passport');
+const  LocalStrategy = require('passport-local');
+const  User        = require('./models/user');
+const  methodOverride = require('method-override');
     
 
-var requestRoutes = require('./routes/requests'),
-    secretRoutes = require('./routes/secrets'),
-    indexRoutes = require('./routes/index')
+const requestRoutes = require('./routes/requests');
+const  secretRoutes = require('./routes/secrets');
+const  indexRoutes = require('./routes/index');
 
 const url = "mongodb://"+process.env.DATABASE_USER+":"+process.env.DATABASE_PASS+"@ds117423.mlab.com:17423/deathwish"
 
