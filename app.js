@@ -24,9 +24,6 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname+'/public'))
 //seedDB()
 console.log(process.env.DATABASE_USER)
-var requestRoutes = require('./routes/requests'),
-    secretRoutes = require('./routes/secrets'),
-    indexRoutes = require('./routes/index')
 
 
 //passport config
