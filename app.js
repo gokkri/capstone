@@ -1,5 +1,3 @@
-//var cors = require('./cors');
-//app.use(cors());
 require('dotenv').config();
 var express     = require("express"),
     app         = express(),
