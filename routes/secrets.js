@@ -84,6 +84,9 @@ router.put('/:id',middleware.checkSecretOwnership,(req,res)=>{
         }
     })
 }) 
+
+
+
 // DESTROY secret ROUTE
 router.delete('/:id',middleware.checkSecretOwnership,(req,res)=>{
     Secret.findByIdAndRemove(req.params.id,(err)=>{
@@ -96,6 +99,9 @@ router.delete('/:id',middleware.checkSecretOwnership,(req,res)=>{
    })
 })
 
+
+
+
 //INDEX - show all  requests to admin
 router.get("/", function(req, res){
     // Get all secrets from DB
@@ -107,6 +113,9 @@ router.get("/", function(req, res){
        }
     });
 });
+
+
+
 
 //CREATE - add new request to DB
  router.post('/',/*middleware.isLoggedIn*/(req,res)=>{
@@ -134,6 +143,8 @@ router.get("/", function(req, res){
 })
 
 
+
+
 //NEW - show form to create new secret
 router.get("/new", middleware.isLoggedIn, function(req, res){
    res.render("secrets/rnew"); 
@@ -153,12 +164,17 @@ router.get("/:id",middleware.isLoggedIn, function(req, res){
     });
 });
 
+
+
+
 // EDIT request ROUTE
 router.get("/:id/edit", middleware.checkRequestOwnership, function(req, res){
     Request.findById(req.params.id, function(err, foundRequest){
         res.render("secrets/redit", {request: foundRequest});
     });
 });
+
+
 
 // UPDATE request ROUTE
 router.put('/:id',middleware.checkRequestOwnership,(req,res)=>{
@@ -171,6 +187,9 @@ router.put('/:id',middleware.checkRequestOwnership,(req,res)=>{
         }
     })
 }) 
+
+
+
 // DESTROY secret ROUTE
 router.delete('/:id',middleware.checkRequestOwnership,(req,res)=>{
     Request.findByIdAndRemove(req.params.id,(err)=>{
