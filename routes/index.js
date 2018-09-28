@@ -38,17 +38,25 @@ router.post('/register',(req,res)=>{
  })
  
  //login 
- 
- router.get('/login',passport.authenticate('local'),
+  router.get('/login',
 //  {
 //      successRedirect:'/secrets',
 //      failureRedirect:'/login'
 //  }),
  (req,res)=>{
-     res.json(req.user)
-     console.log("$$$$$$$$$$$$$$$$", req.user)
+     console.log(req.headers.username)
+     User.findOne({username: req.headers.username}).exec()
+     .then((data) => {
+     res.json(data)
+     console.log(data);
+     })
+    //  console.log(req.headers)
  })
  
+
+
+
+
  //logout
  router.get('/logout',(req,res)=>{
      req.logout()

@@ -14,10 +14,15 @@ router.get("/", function(req, res){
            console.log(err);
        } else {
 
-          res.render("secrets/index",{secrets:allSecrets});
+          res.json(allSecrets);
        }
     });
 });
+
+
+
+
+
 
 //CREATE - add new secret to DB
  router.post('/',/*middleware.isLoggedIn,*/(req,res)=>{
@@ -41,16 +46,25 @@ router.get("/", function(req, res){
         }
         else {
             //redirect to secret page
-            res.redirect('/secrets')
+            res.json(newlyCreatedSecret)
         }
     })
 })
 
 
+
+
+
+
+
+
 //NEW - show form to create new secret
-router.get("/new", /*middleware.isLoggedIn*/ function(req, res){
-   res.render("secrets/new"); 
-});
+// router.get("/new", /*middleware.isLoggedIn*/ function(req, res){
+//    res.json("secrets/new"); 
+// });
+
+
+
 
 // SHOW - shows more info about one secret
 router.get("/:id",/*middleware.isLoggedIn,*/ function(req, res){
@@ -66,18 +80,25 @@ router.get("/:id",/*middleware.isLoggedIn,*/ function(req, res){
     });
 });
 
+
+
+
+
+
 // EDIT secret ROUTE
 router.get("/:id/edit", middleware.checkSecretOwnership, function(req, res){
     Secret.findById(req.params.id, function(err, foundSecret){
-        res.render("secrets/edit", {secret: foundSecret});
+        res.json(foundSecret);
     });
 });
+
+
 
 // UPDATE secret ROUTE
 router.put('/:id',middleware.checkSecretOwnership,(req,res)=>{
     Secret.findByIdAndUpdate(req.params.id,req.body.secret,(err,updatedSecret)=>{
         if(err) {
-            res.redirect('/secrets')
+            console.log(err);
         }
         else {
             res.json(updatedSecret)
@@ -91,116 +112,15 @@ router.put('/:id',middleware.checkSecretOwnership,(req,res)=>{
 router.delete('/:id',middleware.checkSecretOwnership,(req,res)=>{
     Secret.findByIdAndRemove(req.params.id,(err)=>{
        if(err) {
-           res.redirect('/secrets')
-       }
+        console.log(err);
+    }
        else {
-          res.redirect('/secrets')
+        console.log("success");
        }
    })
 })
 
 
-
-
-//INDEX - show all  requests to admin
-router.get("/", function(req, res){
-    // Get all secrets from DB
-    Request.findById({}, function(err, allRequests){
-       if(err){
-           console.log(err);
-       } else {
-          res.render("secret/index",{requests:allRequests});
-       }
-    });
-});
-
-
-
-
-//CREATE - add new request to DB
- router.post('/',/*middleware.isLoggedIn*/(req,res)=>{
-     var yourAadhaar = req.body.youraadhaar;
-      var yourEmail = req.body.youremail;
-      var deceasedAdhaar = req.body.deceasedadhaar;
-      var deathCertificate = req.body.deathcertificate
-      
-      var author = {
-          id : req.user._id,
-          username : req.user.username 
-     }
-     
-      var newRequest = {yourAadhaar:yourAadhaar, yourEmail: yourEmail, deceasedAdhaar: deceasedAdhaar,deathCertificate:deathCertificate,author:author}
-    //save data to db
-    Request.create(newRequest,(err,newlyCreatedRequest)=>{
-        if(err) {
-            console.log(err)
-        }
-        else {
-            //redirect to secret page
-            res.redirect('/secrets')
-        }
-    })
-})
-
-
-
-
-//NEW - show form to create new secret
-router.get("/new", middleware.isLoggedIn, function(req, res){
-   res.render("secrets/rnew"); 
-});
-
-// SHOW - shows more info about one request
-router.get("/:id",middleware.isLoggedIn, function(req, res){
-    //find the request with provided ID
-    Request.findById(req.params.id,function(err, foundRequest){
-        if(err){
-            console.log(err);
-        } else {
-            console.log(foundRequest)
-            //render show template with that secret
-            res.render("secrets/rshow", {request: foundRequest});
-        }
-    });
-});
-
-
-
-
-// EDIT request ROUTE
-router.get("/:id/edit", middleware.checkRequestOwnership, function(req, res){
-    Request.findById(req.params.id, function(err, foundRequest){
-        res.render("secrets/redit", {request: foundRequest});
-    });
-});
-
-
-
-// UPDATE request ROUTE
-router.put('/:id',middleware.checkRequestOwnership,(req,res)=>{
-    Request.findByIdAndUpdate(req.params.id,req.body.request,(err,updatedRequest)=>{
-        if(err) {
-            res.redirect('/requests')
-        }
-        else {
-            res.redirect('/requests/'+req.params.id)
-        }
-    })
-}) 
-
-
-
-// DESTROY secret ROUTE
-router.delete('/:id',middleware.checkRequestOwnership,(req,res)=>{
-    Request.findByIdAndRemove(req.params.id,(err)=>{
-       if(err) {
-           res.redirect('/secrets')
-       }
-       else {
-          res.redirect('/secrets')
-       }
-   })
-})
 
 
 
